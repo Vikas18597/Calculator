@@ -14,12 +14,31 @@ for(i = 0; i < 10; i++){
     buttons["button-" +i] = document.getElementById("button-"+i) ;
 }
 
-// https://dev.to/smpnjn/javascript-add-event-listener-to-multiple-elements-2jah -- read this link
-let elements = document.querySelectorAll('.button');
 
-let clickEvent = () => {
-    console.log('some event content here...')
-}
-elements.forEach((item) => {
-    item.addEventListener('click', clickEvent)
-});
+
+let numbers = document.querySelector('.numbers');
+
+let clicked = (x) => {
+    if(x.target.tagName === 'BUTTON') {
+      console.log(x.target.innerHTML);
+    }
+  }; 
+
+numbers.addEventListener("click", clicked ); 
+
+// // calling a function directly -- not efficient because event listener is called multiple times
+// let elements = document.querySelectorAll('button'); 
+// let clicked = (x) => { return console.log(x.innerHTML)} ;  
+
+// elements.forEach(item => { 
+//     item.addEventListener('click', () => {clicked(item);}) ;
+// })
+
+
+
+
+
+
+
+
+
