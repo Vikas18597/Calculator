@@ -6,15 +6,7 @@ let divide = (a,b) => a/b ;
 
 let operate = (func, a,b) => func(a,b);
 
-// creating dictionary of buttons
- 
-let buttons = {};
-
-for(i = 0; i < 10; i++){
-    buttons["button-" +i] = document.getElementById("button-"+i) ;
-}
-
-
+// using event delegation to call Event listener only one time 
 
 let numbers = document.querySelector('.numbers');
 
