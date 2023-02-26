@@ -12,8 +12,26 @@ let numbers = document.querySelector('.numbers');
 
 let clicked = (x) => {
     if(x.target.tagName === 'BUTTON') {
-      console.log(x.target.innerHTML);
+      
+      let val = document.querySelector('.display');
+      let current_val = x.target.innerText ; 
+      // will delete the last element  
+      if (current_val == 'C'){
+        val.innerText = val.innerText.slice(0,-1) ; 
+        console.log(val.innerText);
+      }
+      else if (current_val == '+') {
+        let a = val.innerText ; 
+        val.innerText += ' ' + x.target.innerText + ' ';
+        
+      }
+      // will insert the number
+      else{
+        val.innerText += x.target.innerText ;
+      } 
+      
     }
+    
   }; 
 
 numbers.addEventListener("click", clicked ); 
@@ -25,6 +43,7 @@ numbers.addEventListener("click", clicked );
 // elements.forEach(item => { 
 //     item.addEventListener('click', () => {clicked(item);}) ;
 // })
+
 
 
 
