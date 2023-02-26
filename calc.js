@@ -12,22 +12,31 @@ let numbers = document.querySelector('.numbers');
 
 let clicked = (x) => {
     if(x.target.tagName === 'BUTTON') {
-      
+      let current_operand = null;
       let val = document.querySelector('.display');
       let current_val = x.target.innerText ; 
+
       // will delete the last element  
       if (current_val == 'C'){
-        val.innerText = val.innerText.slice(0,-1) ; 
-        console.log(val.innerText);
+        val.textContent  = val.textContent.slice(0,-1) ; 
       }
+
+      // will show addition
       else if (current_val == '+') {
-        let a = val.innerText ; 
-        val.innerText += ' ' + x.target.innerText + ' ';
-        
+        current_operand = '+';
+        val.textContent  +=  x.target.textContent;
       }
+
+      // equal operand 
+      else if (current_val == '='){
+        if (current_operand = '+'){
+          val.textContent = Number(val.textContent.slice(-1)) + Number(val.textContent.slice(0,1)) ; 
+        }
+      }
+
       // will insert the number
       else{
-        val.innerText += x.target.innerText ;
+        val.textContent += current_val ;
       } 
       
     }
@@ -43,6 +52,7 @@ numbers.addEventListener("click", clicked );
 // elements.forEach(item => { 
 //     item.addEventListener('click', () => {clicked(item);}) ;
 // })
+
 
 
 
