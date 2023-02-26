@@ -11,7 +11,7 @@ function operate(operand,a,b){
     case '+': return sum(a,b);
     case '-': return subtract(a,b);
     case '/': return divide(a,b);
-    case 'x': return multiply(a,b);
+    case '*': return multiply(a,b);
   }
 }
 
@@ -34,16 +34,19 @@ let clicked = (x) => {
       }
 
       // will show addition
-      else if (current_val == '+' || current_val == '-' || current_val == 'x' || current_val == '/') {
+      else if (current_val == '+' || current_val == '-' || current_val == '*' || current_val == '/') {
         current_operand = current_val;
         val.textContent  +=  x.target.textContent;
-        console.log(val.textContent);
       }
 
       // equal operand 
       else if (current_val == '='){
-        console.log(val.innerText);
-        val.textContent = operate(current_operand, Number(val.textContent.slice(-1)) ,Number(val.textContent.slice(0,1))) ; 
+        let expression = val.innerText.split(/\+|\-|\/|\*/) ; // regex code for seperating number from operator 
+        console.log(expression);
+        let first_num = expression[0], second_num = expression[1]; // associating numbers to variables 
+        console.log(first_num); 
+        console.log(second_num);
+        val.textContent = operate(current_operand, Number(first_num) ,Number(second_num)) ; 
       }
 
       // will insert the number
@@ -66,9 +69,7 @@ numbers.addEventListener("click", clicked );
 //     item.addEventListener('click', () => {clicked(item);}) ;
 // })
 
-
-
-
+t = '21x4';
 
 
 
