@@ -2,7 +2,7 @@
 let sum = (a,b) => a+b ;
 let subtract = (a,b) => a - b; 
 let multiply = (a,b) => a*b; 
-let divide = (a,b) => b/a ; 
+let divide = (a,b) =>(a/b).toFixed(2) ; 
 
 // let operate = (func, a,b) => func(a,b);
 
@@ -15,7 +15,15 @@ function operate(operand,a,b){
   }
 }
 
-// bugs -- first time applying operation leads to a bug 
+// function to describe what to do in case of equal sign is pressed 
+function equal(val) {
+  let expression = val.innerText.split(/\+|\-|\/|\*/) ; // regex code for seperating number from operator 
+  let first_num = expression[0], second_num = expression[1]; // associating numbers to variables 
+  console.log("The first number is " + first_num); 
+  console.log("The second number is " + second_num);
+  val.textContent = operate(current_operand, Number(first_num) ,Number(second_num)) ; 
+  return val.textContent
+}
 
 // using event delegation to call Event listener only one time 
 let current_operand = null; 
@@ -27,6 +35,10 @@ let clicked = (x) => {
     if(x.target.tagName === 'BUTTON') {
 
       let current_val = x.target.innerText ; 
+
+      // if(arr.length > 2){
+      //   val.textContent = equal(arr);
+      // }
       
       // will delete the last element  
       if (current_val == 'C'){
@@ -35,28 +47,30 @@ let clicked = (x) => {
 
       // will show addition
       else if (current_val == '+' || current_val == '-' || current_val == '*' || current_val == '/') {
+        let arr = val.innerText.split(/\+|\-|\/|\*/);
+        console.log(arr);
+  
+        if (arr.length >= 2){
+          val.textContent = equal(val);
+
+        }
+
         current_operand = current_val;
         val.textContent  +=  x.target.textContent;
       }
 
       // equal operand 
       else if (current_val == '='){
-        let expression = val.innerText.split(/\+|\-|\/|\*/) ; // regex code for seperating number from operator 
-        console.log(expression);
-        let first_num = expression[0], second_num = expression[1]; // associating numbers to variables 
-        console.log(first_num); 
-        console.log(second_num);
-        val.textContent = operate(current_operand, Number(first_num) ,Number(second_num)) ; 
+        val.textContent = equal(val);
       }
 
       // will insert the number
       else{
         val.textContent += current_val ;
       } 
-
       
     }
-    
+     
   }; 
 
 numbers.addEventListener("click", clicked ); 
