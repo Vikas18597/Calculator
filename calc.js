@@ -36,9 +36,6 @@ let clicked = (x) => {
 
       let current_val = x.target.innerText ; 
 
-      // if(arr.length > 2){
-      //   val.textContent = equal(arr);
-      // }
       
       // will delete the last element  
       if (current_val == 'C'){
@@ -83,7 +80,7 @@ numbers.addEventListener("click", clicked );
 //     item.addEventListener('click', () => {clicked(item);}) ;
 // })
 
-t = '21x4';
+
 
 
 
